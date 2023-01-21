@@ -70,7 +70,8 @@ def budget_average(lista):
     return res
 
 def create_spend_chart(lista):
-    u, d, t, c = '', '', '', ''
+    u = d = t = c = ''
+    su = sd = st = 3
     maxi = 0
     avg = budget_average(lista)
     print('Percentage spent by category')
@@ -78,17 +79,21 @@ def create_spend_chart(lista):
        print(str(i).rjust(3), '|', sep='', end=' ')
        for j in range(0, len(avg)):
            if avg[j] >= i and j == 0:
-               u='o'
+               u, su = 'o', 2
            if avg[j] >= i and j == 1:
-               d='o'
+               d, sd = 'o', 2
            if avg[j] >= i and j == 2:
-               t='o'
+               t, st = 'o', 2
            if avg[j] >= i and j == 3:
-               c='o'
-       print('{u}  {d}  {t}  {c}'.format(u=u, d=d, t=t, c=c))
+               c = 'o'
+       print(u, sep='', end=' '*su)
+       print(d, sep='', end=' '*sd)
+       print(t, sep='', end=' '*st)
+       print(c, sep='', end='\n')
     print('    -', '---'*len(lista), sep='')
     for i in range(0,len(lista)):
-        maxi = len(lista[i].name)
+        if len(lista[i].name) > maxi:
+            maxi = len(lista[i].name)
     for j in range(0,maxi):
         try:
             uno = lista[0].name[j]
