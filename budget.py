@@ -107,6 +107,3 @@ def create_spend_chart(lista):
         except:
             cuatro = ' '
         print('   ', uno, dos, tres, cuatro, sep='  ')
-
-
-create_spend_chart(lista)
